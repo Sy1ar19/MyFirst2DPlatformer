@@ -9,6 +9,7 @@ public class CoinsSpawner : MonoBehaviour
 
     private WaitForSeconds _wait;
     private int _randomSpawnPoint;
+    private float colliderRange = 0.2f;
     private void Start()
     {
         _wait = new WaitForSeconds(_repeatRate);
@@ -25,7 +26,7 @@ public class CoinsSpawner : MonoBehaviour
             _randomSpawnPoint = Random.Range(0, _coinSpawnerPosition.Length);
             Transform spawnPoint = _coinSpawnerPosition[_randomSpawnPoint];
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPoint.position, 0.2f);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPoint.position, colliderRange);
             bool coinExists = false;
 
             foreach (Collider2D collider in colliders)

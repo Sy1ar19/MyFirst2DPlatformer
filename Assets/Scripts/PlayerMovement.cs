@@ -8,11 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _jumpForce;
 
     private Rigidbody2D _rigidbody2D;
-    private Player _player;
     private bool _isGrounded;
     private bool _isRunning = false;
     private bool _isAttacking = false;
-    private bool _isJumping = false;
+    [SerializeField]  private bool _isJumping = false;
 
     public bool IsRunning { get { return _isRunning; } }
     public bool IsGrounded { get { return _isGrounded; } }
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _player = GetComponent<Player>();
     }
 
     private void Update()
@@ -39,10 +37,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && _isGrounded == true)
         {
             Jump();
-        }
-        else
-        {
-            _isJumping = false;
         }
 
         if (Input.GetKey(KeyCode.Mouse0))

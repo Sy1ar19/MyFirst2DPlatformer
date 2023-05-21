@@ -9,6 +9,11 @@ public class PlayerAnimationController : MonoBehaviour
     private PlayerMovement _playerMovement;
     private Player _player;
 
+    private static readonly int RunParamHash = Animator.StringToHash("Run");
+    private static readonly int JumpParamHash = Animator.StringToHash("Jump");
+    private static readonly int AttackParamHash = Animator.StringToHash("Attack");
+    private static readonly int DieParamHash = Animator.StringToHash("Die");
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -18,37 +23,14 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Update()
     {
-        if (_playerMovement.IsRunning)
-        {
-            _animator.SetBool("Run", true);
-        }
-        else
-        {
-            _animator.SetBool("Run", false);
-        }
+        _animator.SetBool(RunParamHash, _playerMovement.IsRunning);
+        _animator.SetBool(JumpParamHash, _playerMovement.IsGrounded == false && _playerMovement.IsJumping == true);
+        _animator.SetBool(AttackParamHash, _playerMovement.IsAttacking);
 
-        if (_playerMovement.IsGrounded == false && _playerMovement.IsJumping == true)
+        if (_player.IsDead)
         {
-            _animator.SetBool("Jump", true);
-        }
-        else
-        {
-            _animator.SetBool("Jump", false);
-        }
-
-        if (_playerMovement.IsAttacking)
-        {
-            _animator.SetBool("Attack", true);
-        }
-        else
-        {
-            _animator.SetBool("Attack", false);
-        }
-
-        if(_player.IsDead == true) 
-        {
-            _animator.SetBool("Run", false);
-            _animator.SetBool("Die", true);
+            _animator.SetBool(RunParamHash, false);
+            _animator.SetBool(DieParamHash, true);
         }
     }
 }

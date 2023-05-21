@@ -1,11 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Fader : MonoBehaviour
 {
     [SerializeField] private Button _retryButton;
+
+    private const float blinkOffDuration = 0.2f;
+    private const float blinkOnDuration = 0.3f;
 
     private bool _isRestart;
     private float _alpha;
@@ -34,14 +36,7 @@ public class Fader : MonoBehaviour
             _alpha += step;
             _canvasGroup.alpha = _alpha;
 
-            if (_alpha < 0)
-            {
-                _alpha = 0;
-            }
-            else if (_alpha > 1)
-            {
-                _alpha = 1;
-            }
+            _alpha = Mathf.Clamp01(_alpha);
 
             yield return _waitForSeconds;
         }
@@ -56,11 +51,11 @@ public class Fader : MonoBehaviour
         {
             image.enabled = false;
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(blinkOffDuration);
 
             image.enabled = true;
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(blinkOnDuration);
         }
     }
 
