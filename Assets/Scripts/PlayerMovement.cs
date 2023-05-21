@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isGrounded;
     private bool _isRunning = false;
     private bool _isAttacking = false;
-    [SerializeField]  private bool _isJumping = false;
+    private bool _isJumping = false;
 
     public bool IsRunning { get { return _isRunning; } }
     public bool IsGrounded { get { return _isGrounded; } }
@@ -71,10 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        _isGrounded = false;
-    }
+    private void OnCollisionExit2D(Collision2D collision) => _isGrounded = false;
 
     private void Move()
     {
@@ -96,8 +93,5 @@ public class PlayerMovement : MonoBehaviour
             new Vector2(transform.position.x + direction * step, transform.position.y), step);
     }
 
-    private void Attack()
-    {
-        _isAttacking = true;
-    }
+    private void Attack() => _isAttacking = true;
 }
