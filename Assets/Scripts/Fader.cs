@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class Fader : MonoBehaviour
 {
     [SerializeField] private Button _retryButton;
@@ -10,6 +11,7 @@ public class Fader : MonoBehaviour
     private const float blinkOnDuration = 0.3f;
 
     private bool _isRestart;
+    private bool _isInGame;
     private float _alpha;
     private CanvasGroup _canvasGroup;
     private WaitForSeconds _waitForSeconds;
@@ -17,7 +19,12 @@ public class Fader : MonoBehaviour
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
+
+        if (_isInGame)
+        {
         _alpha = 1;
+        }
+
         _retryButton.gameObject.SetActive(false);
     }
 

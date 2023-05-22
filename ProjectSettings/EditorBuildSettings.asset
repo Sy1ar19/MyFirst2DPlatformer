@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/2D Platformer Tileset/Simple UI Pack/Scenes/Sample.unity
-    guid: c3da11631a2e8b7438016aab77a0b552
+    path: Assets/Scenes/MainMenu.unity
+    guid: b02b83659156ffa4ba96257e09e236a5
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Game.unity
+    guid: 3ee05f7a8c579d64ea69bb723c1e4fde
   m_configObjects: {}
